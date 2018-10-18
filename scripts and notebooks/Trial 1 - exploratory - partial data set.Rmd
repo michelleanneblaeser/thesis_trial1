@@ -1,0 +1,130 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Load packages:
+```{r}
+library(pacman)
+p_load(psych, haven, tidyverse, GPArotation)
+```
+Import data:
+```{r}
+survey1 <- read_spss("../thesis_trial1/data/The Effect of Various Factors on Childhood Experiences and Adult Perso.sav")
+survey2 <- read_spss("../thesis_trial1/data/The Effect of Various Factors on Childhood Experiences and Adult Perso 2.sav")
+```
+
+Create STS data frame with partial data set:
+```{r}
+sts <- select(survey2, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+```
+
+Trial analysis on survey2:
+Using OLS
+```{r}
+parallel.s1 <- fa.parallel(sts, fm = 'minres', fa = 'fa')
+```
+Trial analysis on survey2:
+Using ML
+```{r}
+parallel.s2 <- fa.parallel(sts, fm = 'ml', fa = 'fa')
+```
+EFA
+OLS
+5 factors:
+```{r}
+fivefactor.ols <- fa(sts,nfactors = 5,rotate = "oblimin",fm="minres")
+print(fivefactor.ols)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fivefactor.ols$loadings,cutoff = 0.49)
+```
+EFA
+ML
+5 factors:
+```{r}
+fivefactor.ml <- fa(sts,nfactors = 5,rotate = "oblimin",fm="ml")
+print(fivefactor.ml)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fivefactor.ml$loadings,cutoff = 0.49)
+```
+EFA
+OLS
+7 factors:
+```{r}
+sevenfactor.ols <- fa(sts,nfactors = 7,rotate = "oblimin",fm="minres")
+print(sevenfactor.ols)
+```
+Supress factor loadings below 0.49
+```{r}
+print(sevenfactor.ols$loadings,cutoff = 0.49)
+```
+Trial analysis on survey2:
+Using PA
+```{r}
+parallel.s3 <- fa.parallel(sts, fm = 'pa', fa = 'fa')
+```
+EFA
+PAF
+7 factors:
+```{r}
+sevenfactor.pa <- fa(sts,nfactors = 7,rotate = "oblimin",fm="pa")
+print(sevenfactor.pa)
+```
+Supress factor loadings below 0.49
+```{r}
+print(sevenfactor.pa$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+5 factors:
+```{r}
+fivefactor.pa <- fa(sts,nfactors = 5,rotate = "oblimin",fm="pa")
+print(fivefactor.pa)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fivefactor.pa$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+4 factors:
+```{r}
+fourfactor.pa <- fa(sts,nfactors = 4,rotate = "oblimin",fm="pa")
+print(fourfactor.pa)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fourfactor.pa$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+3 factors:
+```{r}
+threefactor.pa <- fa(sts,nfactors = 3,rotate = "oblimin",fm="pa")
+print(threefactor.pa)
+```
+Supress factor loadings below 0.49
+```{r}
+print(threefactor.pa$loadings,cutoff = 0.49)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
