@@ -178,3 +178,44 @@ ITC on final Psych scale:
 ```{r}
 item.total(stsfull_psych_final)
 ```
+Create full final STS scale (final STS phys + final STS psych)
+```{r}
+stsfull_final <- cbind(stsfull_phys_final, stsfull_psych_final)
+```
+create totals:
+```{r}
+stsfull_final.tot <- stsfull_final
+stsfull_phys_final.tot <- stsfull_phys_final
+stsfull_psych_final.tot <- stsfull_psych_final
+```
+```{r}
+stsfull_final.tot <- cbind(stsfull_final.tot, total = rowSums(stsfull_final.tot))
+stsfull_phys_final.tot <- cbind(stsfull_phys_final.tot, total = rowSums(stsfull_phys_final.tot))
+stsfull_psych_final.tot <- cbind(stsfull_psych_final.tot, total = rowSums(stsfull_psych_final.tot))
+```
+Descriptive stats of scale and subscale totals
+```{r}
+describe(stsfull_final.tot)
+describe(stsfull_phys_final.tot)
+describe(stsfull_psych_final.tot)
+```
+Histograms of full scale and subscale totals:
+```{r}
+ggplot(data=stsfull_final.tot, aes(stsfull_final.tot$total, fill = "blue")) + 
+  geom_histogram()
+ggplot(data=stsfull_phys_final.tot, aes(stsfull_phys_final.tot$total, fill = "blue")) + 
+  geom_histogram()
+ggplot(data=stsfull_psych_final.tot, aes(stsfull_psych_final.tot$total, fill = "blue")) + 
+  geom_histogram()
+```
+
+
+
+
+
+
+
+
+
+
+
