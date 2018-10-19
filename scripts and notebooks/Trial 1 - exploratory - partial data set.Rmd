@@ -111,9 +111,18 @@ Supress factor loadings below 0.49
 ```{r}
 print(threefactor.pa$loadings,cutoff = 0.49)
 ```
-
-
-
+EFA
+PAF
+4 factors:
+Varimax rotation
+```{r}
+fourfactor.pa.orth <- fa(sts,nfactors = 4,rotate = "varimax",fm="pa")
+print(fourfactor.pa.orth)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fourfactor.pa.orth$loadings,cutoff = 0.49)
+```
 
 
 

@@ -1,0 +1,180 @@
+---
+title: "Trial 1B - full data set"
+output: html_notebook
+---
+
+Load packages:
+```{r}
+library(pacman)
+p_load(psych, haven, tidyverse, GPArotation, multilevel)
+```
+Import data:
+```{r}
+surveyfull <- read_spss("../thesis_trial1/data/The Effect of Various Factors on Childhood Experiences and Adult Perso 3 full.sav")
+```
+Create STS data frame with full data set:
+```{r}
+stsfull <- select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+```
+```{r}
+stsfull.dat <- as.data.frame(stsfull)
+```
+Descriptive stats:
+```{r}
+describe(stsfull.dat)
+```
+Trial analysis on survey full:
+Using PA
+```{r}
+parallel.s4 <- fa.parallel(stsfull, fm = 'pa', fa = 'fa')
+```
+EFA
+PAF
+5 factors:
+```{r}
+fivefactor.pa.full <- fa(stsfull,nfactors = 5,rotate = "oblimin",fm="pa")
+print(fivefactor.pa.full)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fivefactor.pa.full$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+4 factors:
+```{r}
+fourfactor.pa.full <- fa(stsfull,nfactors = 4,rotate = "oblimin",fm="pa")
+print(fourfactor.pa.full)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fourfactor.pa.full$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+3 factors:
+```{r}
+threefactor.pa.full <- fa(stsfull,nfactors = 3,rotate = "oblimin",fm="pa")
+print(threefactor.pa.full)
+```
+Supress factor loadings below 0.49
+```{r}
+print(threefactor.pa.full$loadings,cutoff = 0.49)
+```
+
+Consider psych sep only:
+```{r}
+stsfull_psych <- select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+
+```
+Trial analysis on survey full (psych only):
+Using PA
+```{r}
+parallel.s5 <- fa.parallel(stsfull_psych, fm = 'pa', fa = 'fa')
+```
+EFA
+PAF
+4 factors
+Only psych:
+```{r}
+fourfactor.pa.full_psych <- fa(stsfull_psych,nfactors = 4,rotate = "oblimin",fm="pa")
+print(fourfactor.pa.full_psych)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fourfactor.pa.full_psych$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+3 factors
+Only psych:
+```{r}
+threefactor.pa.full_psych <- fa(stsfull_psych,nfactors = 3,rotate = "oblimin",fm="pa")
+print(threefactor.pa.full_psych)
+```
+Supress factor loadings below 0.49
+```{r}
+print(threefactor.pa.full_psych$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+2 factors
+Only psych:
+```{r}
+twofactor.pa.full_psych <- fa(stsfull_psych,nfactors = 2,rotate = "oblimin",fm="pa")
+print(twofactor.pa.full_psych)
+```
+Supress factor loadings below 0.49
+```{r}
+print(twofactor.pa.full_psych$loadings,cutoff = 0.49)
+```
+Consider phys sep only:
+```{r}
+stsfull_phys <-select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
+```
+
+Trial analysis on survey full (phys only):
+Using PA
+```{r}
+parallel.s6 <- fa.parallel(stsfull_phys, fm = 'pa', fa = 'fa')
+```
+EFA
+PAF
+3 factors
+Only phys:
+```{r}
+threefactor.pa.full_phys <- fa(stsfull_phys,nfactors = 3,rotate = "oblimin",fm="pa")
+print(threefactor.pa.full_phys)
+```
+Supress factor loadings below 0.49
+```{r}
+print(threefactor.pa.full_phys$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+2 factors
+Only phys:
+```{r}
+twofactor.pa.full_phys <- fa(stsfull_phys,nfactors = 2,rotate = "oblimin",fm="pa")
+print(twofactor.pa.full_phys)
+```
+Supress factor loadings below 0.49
+```{r}
+print(twofactor.pa.full_phys$loadings,cutoff = 0.49)
+```
+EFA
+PAF
+1 factors
+Only phys:
+```{r}
+onefactor.pa.full_phys <- fa(stsfull_phys,nfactors = 1,rotate = "oblimin",fm="pa")
+print(onefactor.pa.full_phys)
+```
+Supress factor loadings below 0.49
+```{r}
+print(onefactor.pa.full_phys$loadings,cutoff = 0.49)
+```
+Alpha on final Phys scale:
+```{r}
+stsfull_phys_final <-select(surveyfull, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
+```
+```{r}
+alpha_phys_final <- psych::alpha(stsfull_phys_final)
+alpha_phys_final
+```
+Alpha on final Psych scale:
+```{r}
+stsfull_psych_final <- select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0074_0001, q0077_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+```
+```{r}
+alpha_psych_final <- psych::alpha(stsfull_psych_final)
+alpha_psych_final
+```
+ITC on final Phys scale:
+```{r}
+item.total(stsfull_phys_final)
+```
+ITC on final Psych scale:
+```{r}
+item.total(stsfull_psych_final)
+```
