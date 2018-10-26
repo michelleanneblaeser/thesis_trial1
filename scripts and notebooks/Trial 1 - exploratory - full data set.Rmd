@@ -10,11 +10,11 @@ p_load(psych, haven, tidyverse, GPArotation, multilevel)
 ```
 Import data:
 ```{r}
-surveyfull <- read_spss("../thesis_trial1/data/The Effect of Various Factors on Childhood Experiences and Adult Perso 3 full.sav")
+surveyfull <- read_spss("../data/The Effect of Various Factors on Childhood Experiences and Adult Perso 3 full.sav")
 ```
 Create STS data frame with full data set:
 ```{r}
-stsfull <- select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+stsfull <- dplyr::select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
 ```
 ```{r}
 stsfull.dat <- as.data.frame(stsfull)
@@ -64,7 +64,7 @@ print(threefactor.pa.full$loadings,cutoff = 0.49)
 
 Consider psych sep only:
 ```{r}
-stsfull_psych <- select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+stsfull_psych <- dplyr::select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0063_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0073_0001, q0074_0001, q0075_0001, q0076_0001, q0077_0001, q0078_0001, q0079_0001, q0080_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0086_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
 
 ```
 Trial analysis on survey full (psych only):
@@ -110,7 +110,7 @@ print(twofactor.pa.full_psych$loadings,cutoff = 0.49)
 ```
 Consider phys sep only:
 ```{r}
-stsfull_phys <-select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
+stsfull_phys <-dplyr::select(surveyfull, q0046_0001, q0047_0001, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
 ```
 
 Trial analysis on survey full (phys only):
@@ -156,7 +156,7 @@ print(onefactor.pa.full_phys$loadings,cutoff = 0.49)
 ```
 Alpha on final Phys scale:
 ```{r}
-stsfull_phys_final <-select(surveyfull, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
+stsfull_phys_final <-dplyr::select(surveyfull, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
 ```
 ```{r}
 alpha_phys_final <- psych::alpha(stsfull_phys_final)
@@ -164,7 +164,7 @@ alpha_phys_final
 ```
 Alpha on final Psych scale:
 ```{r}
-stsfull_psych_final <- select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0074_0001, q0077_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+stsfull_psych_final <- dplyr::select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0074_0001, q0077_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
 ```
 ```{r}
 alpha_psych_final <- psych::alpha(stsfull_psych_final)
@@ -207,6 +207,157 @@ ggplot(data=stsfull_phys_final.tot, aes(stsfull_phys_final.tot$total, fill = "bl
   geom_histogram()
 ggplot(data=stsfull_psych_final.tot, aes(stsfull_psych_final.tot$total, fill = "blue")) + 
   geom_histogram()
+```
+Rerun 4 factor psych sep scale on 24 items that loaded:
+EFA
+PAF
+4 factors
+Only psych
+Items that loaded
+
+Create scale of 24 items that loaded
+```{r}
+stsfull_psych_loaded <- dplyr::select(surveyfull, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0074_0001, q0077_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001)
+```
+Trial analysis on survey (psych only) items that loaded: 
+Using PA
+```{r}
+parallel.s7 <- fa.parallel(stsfull_psych_loaded, fm = 'pa', fa = 'fa')
+```
+EFA 
+PAF 
+4 factors 
+Only psych
+Items that previosly loaded
+```{r}
+fourfactor.pa.full_psych_loaded <- fa(stsfull_psych_loaded,nfactors = 4,rotate = "oblimin",fm="pa")
+print(fourfactor.pa.full_psych_loaded)
+```
+Supress factor loadings below 0.49
+```{r}
+print(fourfactor.pa.full_psych_loaded$loadings,cutoff = 0.49)
+```
+Rerun 3 factor phys sep scale on 11 items that loaded:
+EFA
+PAF
+3 factors
+Only phys
+Items that previously loaded
+
+Create scale of 11 items that loaded:
+```{r}
+stsfull_phys_loaded <-dplyr::select(surveyfull, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001)
+```
+
+Trial analysis on survey full (phys only):
+Using PA
+```{r}
+parallel.s8 <- fa.parallel(stsfull_phys_loaded, fm = 'pa', fa = 'fa')
+```
+EFA
+PAF
+3 factors 
+Only phys
+Items that previously loaded
+```{r}
+threefactor.pa.full_phys_loaded <- fa(stsfull_phys_loaded,nfactors = 3,rotate = "oblimin",fm="pa")
+print(threefactor.pa.full_phys_loaded)
+```
+Supress factor loadings below 0.49
+```{r}
+print(threefactor.pa.full_phys_loaded$loadings,cutoff = 0.49)
+```
+REGRESSIONS
+
+Create data frame for regression (using 35 items in final scale + all BDI items)
+```{r}
+regression.dat <- dplyr::select(surveyfull, q0048_0001, q0049_0001, q0050_0001, q0051_0001, q0052_0001, q0053_0001, q0054_0001, q0055_0001, q0056_0001, q0057_0001, q0058_0001, q0059_0001, q0060_0001, q0061_0001, q0062_0001, q0064_0001, q0065_0001, q0066_0001, q0067_0001, q0068_0001, q0069_0001, q0070_0001, q0071_0001, q0072_0001, q0074_0001, q0077_0001, q0081_0001, q0082_0001, q0083_0001, q0084_0001, q0085_0001, q0087_0001, q0088_0001, q0089_0001, q0090_0001, q0025_0001, q0026_0001, q0027_0001, q0028_0001, q0029_0001, q0030_0001, q0031_0001, q0032_0001, q0033_0001, q0034_0001, q0035_0001, q0036_0001, q0037_0001, q0038_0001, q0039_0001, q0040_0001, q0041_0001, q0042_0001, q0043_0001, q0044_0001, q0045_0001)
+```
+Create scale and subscale totals for 
+STS full
+STS psych
+STS phys
+BDI
+```{r}
+regression.dat$stsphys_total <- regression.dat$q0048_0001 + regression.dat$q0049_0001 + regression.dat$q0050_0001 + regression.dat$q0051_0001 + regression.dat$q0052_0001 +  regression.dat$q0053_0001 + regression.dat$q0054_0001 + regression.dat$q0055_0001 + regression.dat$q0056_0001 + regression.dat$q0057_0001 + regression.dat$q0058_0001
+```
+```{r}
+regression.dat$stspsych_total <- regression.dat$q0059_0001 + regression.dat$q0060_0001 + regression.dat$q0061_0001 + regression.dat$q0062_0001 + regression.dat$q0064_0001 + regression.dat$q0065_0001 + regression.dat$q0066_0001 + regression.dat$q0067_0001 + regression.dat$q0068_0001 + regression.dat$q0069_0001 + regression.dat$q0070_0001 + regression.dat$q0071_0001 + regression.dat$q0072_0001 + regression.dat$q0074_0001 + regression.dat$q0077_0001 + regression.dat$q0081_0001 + regression.dat$q0082_0001 + regression.dat$q0083_0001 + regression.dat$q0084_0001 + regression.dat$q0085_0001 + regression.dat$q0087_0001 + regression.dat$q0088_0001 + regression.dat$q0089_0001 + regression.dat$q0090_0001
+```
+```{r}
+regression.dat$stsfull_total <- regression.dat$stsphys_total + regression.dat$stspsych_total
+```
+```{r}
+regression.dat$bdi_total <- regression.dat$q0025_0001 + regression.dat$q0026_0001 + regression.dat$q0027_0001 + regression.dat$q0028_0001 + regression.dat$q0029_0001 + regression.dat$q0030_0001 + regression.dat$q0031_0001 + regression.dat$q0032_0001 + regression.dat$q0033_0001 + regression.dat$q0034_0001 + regression.dat$q0035_0001 + regression.dat$q0036_0001 + regression.dat$q0037_0001 + regression.dat$q0038_0001 + regression.dat$q0039_0001 + regression.dat$q0040_0001 + regression.dat$q0041_0001 + regression.dat$q0042_0001 + regression.dat$q0043_0001 + regression.dat$q0044_0001 + regression.dat$q0045_0001
+```
+Look at distributions:
+```{r}
+ggplot(data = regression.dat, mapping = aes(stsphys_total)) +
+  geom_histogram(fill = "blue")
+ggplot(data = regression.dat, mapping = aes(stspsych_total)) +
+  geom_histogram(fill = "blue")
+ggplot(data = regression.dat, mapping = aes(stsfull_total)) +
+  geom_histogram(fill = "blue")
+ggplot(data = regression.dat, mapping = aes(bdi_total)) +
+  geom_histogram(fill = "blue")
+```
+Descriptive stats for 4 variables
+
+Create data frame with 4 variables for regression
+```{r}
+describe_reg.dat <- dplyr::select(regression.dat, stsphys_total, stspsych_total, stsfull_total, bdi_total)
+```
+Run descriptive stats:
+```{r}
+describe(describe_reg.dat)
+```
+Regression 1:
+Phys sep vs depression
+```{r}
+stsphys_depression.reg <- lm(bdi_total ~ stsphys_total, regression.dat)
+summary(stsphys_depression.reg)
+```
+STS phys does not significantly predict depression. Also the distribution of the scores for the phys sep subscale does not meet the assumption of normal distribution neccessary for a linear regression
+
+Regression 2:
+Psych sep vs depression
+```{r}
+stspsych_depression.reg <- lm(bdi_total ~ stspsych_total, regression.dat)
+summary(stspsych_depression.reg)
+```
+Psych sep is significantly predictive of depression, but with a fairly small effect size (F = 10.42, p = 0.002, r-squared = 0.08)
+
+Regression 3:
+Full sep vs depression
+```{r}
+stsfull_depression.reg <- lm(bdi_total ~ stsfull_total, regression.dat)
+summary(stsfull_depression.reg)
+```
+Full sep is significantly predictive of depression, but with a very small effect size (F = 6.97, p = 0.009, r-squared = 0.05). The drop in effect size between the psych sep subscale and the full sep scale suggests that the psych sep subscale is more useful as a predictive tool on it's own.
+-------------------------------------------------
+Investigate relationships visually:
+```{r}
+ggplot(data = regression.dat, mapping = aes(x = stsphys_total, y = bdi_total))+
+  geom_point()+
+  geom_smooth()
+ggplot(data = regression.dat, mapping = aes(x = stspsych_total, y = bdi_total))+
+  geom_point()+
+  geom_smooth()
+ggplot(data = regression.dat, mapping = aes(x = stsfull_total, y = bdi_total))+
+  geom_point()+
+  geom_smooth()
+
+```
+Investigate distributions for scales:
+```{r}
+ggplot(data = regression.dat, mapping = aes(y = stsphys_total))+
+  geom_boxplot()
+ggplot(data = regression.dat, mapping = aes(y = stspsych_total))+
+  geom_boxplot()
+ggplot(data = regression.dat, mapping = aes(y = stsfull_total))+
+  geom_boxplot()
+ggplot(data = regression.dat, mapping = aes(y = bdi_total))+
+  geom_boxplot()
 ```
 
 
